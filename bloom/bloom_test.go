@@ -20,3 +20,20 @@ func TestBloom(t *testing.T) {
 		}
 	}
 }
+func TestBloomDistributed(t *testing.T) {
+	bloom, err := NewBloomDistributed("bloom_key", 100000, []BloomFilterHash{murmur3.Sum64})
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	data := [][]byte{[]byte("aaaa"), []byte("bbbb"), []byte("ccccc"), []byte("ddddd"), []byte("aaaa"), []byte("bbbb")}
+	for _, v := range data {
+		isExist := bloom.IsExsit(v)
+		bloom.Add(v)
+		if !isExist {
+			fmt.Printf("%s is not exists\n", v)
+		} else {
+			fmt.Printf("%s is exists\n", v)
+		}
+	}
+}
