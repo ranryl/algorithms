@@ -38,3 +38,6 @@ func (b *BitMap) Del(v uint64) error {
 	b.Bit[index] &= ^(1 << byte(offset))
 	return nil
 }
+func (b *BitMap) Len() uint64 {
+	return uint64(len(b.Bit) * ByteSize)
+}
