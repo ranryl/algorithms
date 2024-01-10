@@ -1,6 +1,6 @@
 package bloom
 
-import "mybloomfilter/bitmap"
+import "algorithms/bitmap"
 
 type Bloom struct {
 	bitMap   bitmap.BitMap
